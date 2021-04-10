@@ -107,28 +107,32 @@ class QuizCreate extends React.Component {
 
     addQuestionHandler(e) {
         e.preventDefault()
-        const {formControls, quiz, rightAnswerId} = { ...this.state }
+        const quiz = this.state.quiz.concat()
+        const {question, option1, option2, option3, option4} = this.state.formControls
 
         if(this.state.isFormValid) {
-            quiz.push({
-                "id": quiz.length + 1,
-                "question": formControls.question.value,
-                "rightAnswerId": rightAnswerId,
-                "answers": [
-                    {id: 1, text: formControls.option1.value},
-                    {id: 2, text: formControls.option2.value},
-                    {id: 3, text: formControls.option3.value},
-                    {id: 4, text: formControls.option4.value},
+            const questionItem = {
+                id: quiz.length + 1,
+                question: question.value,
+                rightAnswerId: this.rightAnswerId,
+                answers: [
+                    {id: 1, text: option1.value},
+                    {id: 2, text: option2.value},
+                    {id: 3, text: option3.value},
+                    {id: 4, text: option4.value},
                 ]
-            })
+            }
+            quiz.push(questionItem)
 
             this.setState({
-                isFormSubmitted: true,
-                quiz
+                quiz,
+                isFormValid: false,
+                isFormSubmitted: false,
+                rightAnswerId: null,
+                formControls: createFormControls()
             })
 
-            console.log('Добавил', quiz)
-            this.onClickResetStateHandler()
+            console.log('Добавил')
         } else {
             this.setState({
                 isFormSubmitted: true
@@ -139,15 +143,9 @@ class QuizCreate extends React.Component {
 
     onSendHandler(e) {
         e.preventDefault()
-    }
-
-    onClickResetStateHandler() {
-        this.setState({
-            isFormValid: false,
-            isFormSubmitted: false,
-            rightAnswerId: null,
-            formControls: createFormControls()
-        })
+        const quiz = this.state.quiz
+        console.log('Добавил', quiz)
+        //TODO Отправка на Бэк
     }
 
     render() {
@@ -181,7 +179,7 @@ class QuizCreate extends React.Component {
                             Добавить вопрос
                         </Button>
                         <Button
-                            onClick={this.onSendHandler}
+                            onClick={this.onSendHandler.bind(this)}
                             typeButton="success"
                             disabled={!this.state.quiz.length}
                         >

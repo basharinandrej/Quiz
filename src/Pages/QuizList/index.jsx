@@ -5,9 +5,9 @@ import {NavLink} from "react-router-dom";
 class QuizList extends React.Component {
 
     renderListQuiz() {
-        return [1, 2, 3].map(el => {
+        return [1, 2, 3].map((el, idx)=> {
             return (
-                <li>
+                <li key={idx}>
                     <NavLink to={"quiz/" + el}>
                         Тест - {el}
                     </NavLink>

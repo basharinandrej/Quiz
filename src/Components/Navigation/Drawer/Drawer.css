@@ -1,0 +1,28 @@
+.drawer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -370px;
+    background: #fff;
+    padding: 64px 24px 12px 24px;
+    width: 370px;
+    transition: .3s;
+    z-index: 3;
+}
+
+.drawer.open {
+    transform: translateX(370px);
+    transition: .3s;
+}
+
+.drawer__list li {
+    list-style: none;
+    font-size: 26px;
+    margin-bottom: 14px;
+}
+
+.drawer__list a {
+    text-decoration: none;
+    color: #000;
+    font-family: sans-serif;
+}

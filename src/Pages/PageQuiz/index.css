@@ -1,0 +1,16 @@
+.quiz-section {
+    margin: 0 auto;
+    padding-top: 128px;
+    background: linear-gradient(90deg, #5041b2 0%, #7967e6 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.quiz-section__title {
+    font-family: sans-serif;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 24px;
+}

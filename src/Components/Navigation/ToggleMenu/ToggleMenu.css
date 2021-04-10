@@ -1,0 +1,15 @@
+.toggle-menu {
+    position: fixed;
+    top: 72px;
+    left: 130px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    transition: .3s;
+    z-index: 3;
+}
+
+.toggle-menu.open {
+    left: 430px;
+    transition: .3s;
+}

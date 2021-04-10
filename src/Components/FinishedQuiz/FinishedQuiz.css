@@ -1,0 +1,50 @@
+.finished__title {
+    margin-bottom: 36px;
+}
+
+.finished-list__item {
+    list-style: none;
+    margin-bottom: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-family: sans-serif;
+    display: flex;
+}
+
+.finished-list__item:last-child {
+    margin-bottom: 0;
+}
+
+.finished-list__item.error {
+    color: #ef7777;
+}
+.finished-list__item.success {
+    color: #56f556;
+}
+.finished-list {
+    width: 600px;
+    margin-bottom: 64px;
+}
+
+.finished-list i {
+    margin-left: auto;
+}
+
+.result-paragraph {
+    color: #fff;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.result-box {
+    width: 600px;
+    margin-bottom: 32px;
+}
+
+.result-paragraph strong {
+    margin: 0 4px;
+}
+.box-btn {
+    display: flex;
+    width: 600px;
+}

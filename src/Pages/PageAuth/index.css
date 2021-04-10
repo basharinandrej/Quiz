@@ -1,0 +1,24 @@
+.auth {
+    background: #1d90be;
+    height: 100vh;
+    padding-top: 62px;
+}
+
+.container {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+    font-family: sans-serif;
+}
+.auth__title {
+    margin-bottom: 96px;
+}
+
+.auth .main-form {
+    max-width: 700px;
+    margin: 0 auto;
+}

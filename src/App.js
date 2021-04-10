@@ -1,12 +1,12 @@
 import React from 'react'
 import Layout from "./hoc/Layout"
-import PageQuiz from "./Pages/PageQuiz"
+import PageQuiz from "./Pages/PageQuiz/PageQuiz"
 import ToggleMenu from "./Components/Navigation/ToggleMenu/ToggleMenu"
 import Drawer from "./Components/Navigation/Drawer/Drawer"
 import {Switch, Route} from "react-router-dom"
 import QuizList from "./Pages/QuizList"
-import PageQuizCreate from "./Pages/QuizCreate"
-import PageAuth from "./Pages/PageAuth"
+import PageQuizCreate from "./Pages/QuizCreate/QuizCreate"
+import PageAuth from "./Pages/PageAuth/Auth"
 
 
 class App extends React.Component {

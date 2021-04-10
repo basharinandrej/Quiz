@@ -15,8 +15,11 @@ const Input = props => {
     const generateId = `${label} - ${Math.random()}`
     const type = typeInput || 'text'
 
-    const isInValid = ({ valid, dirty, shouldValidate }) => {
-        return !valid && dirty && shouldValidate
+    const isInValid = ({ valid, dirty, shouldValidate, isFormValid, isFormSubmitted }) => {
+        if (!isFormValid && isFormSubmitted  && !dirty) {
+            return !valid && shouldValidate && !dirty
+        }
+        return !valid && shouldValidate && dirty
     }
 
     if (isInValid(props)) {

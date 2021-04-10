@@ -1,5 +1,5 @@
 import React from 'react'
-import './index.css'
+import './Auth.css'
 import MainForm from "../../Components/MainForm/MainForm";
 import Input from "../../UI/Input/Input";
 import Button from "../../UI/Button/Button";
@@ -29,7 +29,7 @@ class Auth extends React.Component {
                 dirty: false,
                 type: 'password',
                 label: 'Пароль',
-                errorMassage: 'Минимальная длина пароля 6 символов | сейчас ',
+                errorMassage: 'Минимальная длина пароля 6 символов | сейчас 0',
                 currentLengthPassword: 0,
                 placeholder: null,
                 validation: {
@@ -41,11 +41,11 @@ class Auth extends React.Component {
     }
 
     registerHandler() {
-        this.state.isFormValid ? console.log('Регистрация') : console.log('НЕТ Регистрация')
+        this.isFormValid() ? console.log('Регистрация') : console.log('НЕТ Регистрация')
     }
 
     loginHandler() {
-        this.state.isFormValid ? console.log('Вход') : console.log('НЕТ Вход')
+        this.isFormValid() ? console.log('Вход') : console.log('НЕТ Вход')
     }
 
     isFormValid() {
@@ -59,6 +59,8 @@ class Auth extends React.Component {
         this.setState({
             isFormValid
         })
+
+        return isFormValid
     }
 
     onSubmitHandler(e) {
@@ -101,10 +103,11 @@ class Auth extends React.Component {
     }
 
     setErrorMessageForControls(control, controlName) {
+
         if (controlName === 'email') {
             return control.errorMassage
         }  else if (controlName === 'password') {
-            return `${control.errorMassage.substring(0, control.errorMassage.length - 1)} ${control.currentLengthPassword}`
+            return `Минимальная длина пароля 6 символов | сейчас ${control.currentLengthPassword}`
         }
     }
 

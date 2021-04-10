@@ -1,0 +1,33 @@
+.quiz-create {
+    background: #a42222;
+    height: 100vh;
+    padding-top: 62px;
+}
+
+.container {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.quiz-create__title {
+    margin-bottom: 96px;
+}
+
+.quiz-create .main-form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.quiz-create hr {
+    margin-bottom: 16px;
+}
+
+.quiz-create .select{
+    margin-bottom: 24px;
+}

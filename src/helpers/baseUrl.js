@@ -1,0 +1,1 @@
+export const baseUrl = 'https://quiz-dd6c8-default-rtdb.europe-west1.firebasedatabase.app'

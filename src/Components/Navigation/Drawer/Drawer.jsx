@@ -25,7 +25,7 @@ class Drawer extends React.Component {
                         {links.map((el, idx)=> {
                             return (
                                 <NavLink to={el.to} key={el.text} onClick={this.setCloseDrawer}>
-                                    <li>{idx + 1} - { el.text }</li>
+                                    <li>{ el.text }</li>
                                 </NavLink>
                             )
                         })}

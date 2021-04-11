@@ -3,7 +3,7 @@ import './Select.css'
 
 
 const Select = props => {
-    const {label, options, onChange} = props
+    const {label, options, onChange, value} = props
 
     const generateId = `${label}-${Math.random()}`
 
@@ -14,6 +14,7 @@ const Select = props => {
                 className="select__select"
                 id={generateId}
                 onChange={onChange}
+                value={value}
             >
                 {options.map((option, idx) => {
                     return (

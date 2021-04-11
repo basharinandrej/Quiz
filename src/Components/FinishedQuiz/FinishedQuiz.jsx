@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react'
 import './FinishedQuiz.css'
 import Button from "../../UI/Button/Button";
+import {NavLink} from "react-router-dom";
 
 class FinishedQuiz extends React.Component{
 
@@ -22,8 +23,8 @@ class FinishedQuiz extends React.Component{
                         classesIcon.push( statusAnswer === 'success' ? 'fa-check' : 'fa-times')
 
                         return (
-                            <li className={classes.join(' ')}>
-                                <span>{idx + 1}&nbsp;</span>
+                            <li key={idx} className={classes.join(' ')}>
+                                <span>{idx + 1})&nbsp;</span>
                                 {el.question}
                                 <i className={classesIcon.join(' ')}/>
                             </li>
@@ -48,11 +49,13 @@ class FinishedQuiz extends React.Component{
                         Пройти снова
                     </Button>
 
-                    <Button
-                        typeButton="success"
-                    >
-                        Перейти к списку тестов
-                    </Button>
+                    <NavLink to="/">
+                        <Button
+                            typeButton="success"
+                        >
+                            Перейти к списку тестов
+                        </Button>
+                    </NavLink>
                 </div>
             </Fragment>
         )

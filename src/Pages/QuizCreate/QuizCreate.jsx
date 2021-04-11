@@ -6,6 +6,8 @@ import {Auxiliary} from "../../hoc/Auxiliary/Auxiliary";
 import Select from "../../UI/Select/Select";
 import Button from "../../UI/Button/Button";
 import {createControl, isValidateControl} from "../../helpers/formHelpers";
+import axios from "axios";
+import {baseUrl} from "../../helpers/baseUrl";
 
 
 const createOptionControl = (number) => {
@@ -34,7 +36,7 @@ class QuizCreate extends React.Component {
         quiz: [],
         isFormValid: false,
         isFormSubmitted: false,
-        rightAnswerId: null,
+        rightAnswerId: 1,
         formControls: createFormControls()
     }
 
@@ -114,7 +116,7 @@ class QuizCreate extends React.Component {
             const questionItem = {
                 id: quiz.length + 1,
                 question: question.value,
-                rightAnswerId: this.rightAnswerId,
+                rightAnswerId: this.state.rightAnswerId,
                 answers: [
                     {id: 1, text: option1.value},
                     {id: 2, text: option2.value},
@@ -128,7 +130,7 @@ class QuizCreate extends React.Component {
                 quiz,
                 isFormValid: false,
                 isFormSubmitted: false,
-                rightAnswerId: null,
+                rightAnswerId: 1,
                 formControls: createFormControls()
             })
 
@@ -141,17 +143,29 @@ class QuizCreate extends React.Component {
         }
     }
 
-    onSendHandler(e) {
+    async onSendHandler(e) {
         e.preventDefault()
-        const quiz = this.state.quiz
-        console.log('Добавил', quiz)
-        //TODO Отправка на Бэк
+
+        try {
+            await axios.post(`${baseUrl}/quizes.json`, this.state.quiz)
+
+            this.setState({
+                quiz: [],
+                isFormValid: false,
+                isFormSubmitted: false,
+                rightAnswerId: 1,
+                formControls: createFormControls()
+            })
+        } catch (e) {
+            console.log('Error in Method onSendHandler', e)
+        }
     }
 
     render() {
         const select = (
             <Select
                 label="Выберите правельный ответ"
+                value={this.state.rightAnswerId}
                 options={[
                     {id: 1, text: 'Вариант 1'},
                     {id: 2, text: 'Вариант 2'},

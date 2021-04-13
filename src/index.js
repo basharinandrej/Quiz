@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 
+
 const app = (
     <BrowserRouter>
         <App />
@@ -15,5 +16,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-

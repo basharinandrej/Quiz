@@ -45,7 +45,6 @@ class QuizList extends React.Component {
         }
     }
 
-
     render() {
 
         return (
@@ -64,5 +63,6 @@ class QuizList extends React.Component {
         )
     }
 }
+
 
 export default QuizList

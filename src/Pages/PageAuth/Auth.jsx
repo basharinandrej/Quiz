@@ -45,6 +45,7 @@ class Auth extends React.Component {
     }
 
     loginHandler() {
+        //TODO Регистрация отправляется со второго раза
         this.isFormValid() ? console.log('Вход') : console.log('НЕТ Вход')
     }
 

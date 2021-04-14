@@ -3,13 +3,14 @@ import './QuizList.css'
 import {NavLink} from "react-router-dom";
 import {Loader} from "../../Components/Loader/Loader";
 import {connect} from 'react-redux'
-import {fetchQuizzes} from "../../redux/actions/quiz";
+import {fetchQuizzes} from "../../redux/actions/quizzes";
+import {setDefaultStateCurrentQuiz} from "../../redux/actions/quiz";
 
 class QuizList extends React.Component {
 
 
     renderListQuiz() {
-        return this.props.quizzes.map((el, idx)=> {
+        return this.props.quizzesList.map((el, idx)=> {
             return (
                 <li key={idx}>
                     <NavLink to={"quiz/" + el.id}>
@@ -21,7 +22,8 @@ class QuizList extends React.Component {
     }
 
     componentDidMount() {
-       this.props.fetchQuizzes()
+        this.props.fetchQuizzes()
+        this.props.setDefaultStateCurrentQuiz()
     }
 
     render() {
@@ -31,7 +33,7 @@ class QuizList extends React.Component {
                     <h1>QuizList</h1>
 
                     <ul className="quiz-list__list">
-                        {this.props.isLoading && this.props.quizzes.length
+                        {this.props.isLoading && this.props.quizzesList.length
                             ? <Loader />
                             : this.renderListQuiz()
                         }
@@ -44,14 +46,16 @@ class QuizList extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        quizzes: state.quiz.quizzes,
-        isLoading: state.quiz.isLoading
+        quizzesList: state.quizzes.quizzesList,
+        isLoading: state.quizzes.isLoading
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchQuizzes: () => dispatch(fetchQuizzes())
+        fetchQuizzes: () => dispatch(fetchQuizzes()),
+        setDefaultStateCurrentQuiz: () => dispatch(setDefaultStateCurrentQuiz())
+
     }
 }
 

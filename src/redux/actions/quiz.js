@@ -1,48 +1,95 @@
 import axios from "axios";
 import {baseUrl} from "../../helpers/baseUrl";
 import {
-        FETCH_QUIZZES_START,
-        FETCH_QUIZZES_SUCCESS,
-        FETCH_QUIZZES_ERROR
+    CLICK_RIGHT_ANSWER,
+    FETCH_QUIZ_BY_ID_ERROR,
+    FETCH_QUIZ_BY_ID_START,
+    FETCH_QUIZ_BY_ID_SUCCESS,
+    IS_FINISHED_QUIZ, SET_ANSWER_STATE_ERROR, SET_ANSWER_STATE_SUCCESS, SET_DEFAULT_STATE_CURRENT_QUIZ,
+    SET_NEXT_QUESTION
 } from "./actionType";
 
-export function fetchQuizzes() {
+export function fetchQuizById(quizId) {
     return async dispatch => {
-        dispatch(fetchQuizzesStart())
-        try {
-            const response = await axios.get(`${baseUrl}/quizes.json`)
-            const quizzes = []
+        dispatch(fetchQuizByIdStart())
+        const quiz = []
 
-            Object.keys(response.data).forEach(key => {
-                quizzes.push({
-                    id: key,
-                    title: response.data[key][0].question
-                })
-            })
-            dispatch(fetchQuizzesSuccess({quizzes}))
+        try {
+            const response = await axios.get(`${baseUrl}/quizes/${quizId}.json`)
+
+            quiz.push(...response.data)
+            dispatch(fetchQuizByIdSuccess({quiz}))
         } catch (e) {
-            console.log('Error in fetchQuizzes', e)
-            dispatch(fetchQuizzesError({error: e}))
+            dispatch(fetchQuizByIdError())
+            console.log('Error in componentDidMount', e)
         }
     }
 }
 
-export function fetchQuizzesStart() {
+export function fetchQuizByIdStart() {
     return {
-        type: FETCH_QUIZZES_START
+        type: FETCH_QUIZ_BY_ID_START
     }
 }
 
-export function fetchQuizzesSuccess(payload) {
+export function fetchQuizByIdSuccess(payload) {
     return {
-        type: FETCH_QUIZZES_SUCCESS,
-        quizzes: payload.quizzes
+        type: FETCH_QUIZ_BY_ID_SUCCESS,
+        quiz: payload.quiz
     }
 }
 
-export function fetchQuizzesError(payload) {
+export function fetchQuizByIdError(e) {
     return {
-        type: FETCH_QUIZZES_ERROR,
-        error: payload.error
+        type: FETCH_QUIZ_BY_ID_ERROR,
+        error: e
     }
 }
+
+export function onClickRightAnswer(payload) {
+    return {
+        type: CLICK_RIGHT_ANSWER,
+        results: payload
+    }
+}
+
+export function setFinishedAction() {
+    return {
+        type: IS_FINISHED_QUIZ
+    }
+}
+
+export function setNextQuestion() {
+    return {
+        type: SET_NEXT_QUESTION
+    }
+}
+
+export function setAnswerStateSuccess(payload) {
+    return {
+        type: SET_ANSWER_STATE_SUCCESS,
+        answerState: payload
+    }
+}
+
+export function setAnswerStateError(answerState, results) {
+    return {
+        type: SET_ANSWER_STATE_ERROR,
+        answerState: answerState,
+        results: results
+    }
+}
+
+export function setDefaultStateCurrentQuiz() {
+    return {
+        type: SET_DEFAULT_STATE_CURRENT_QUIZ
+    }
+}
+
+
+
+
+
+
+
+
